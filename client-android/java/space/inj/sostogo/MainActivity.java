@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void preloadNames() {
         try {
-            URL url = new URL("https://inj.space/cdn/musa.txt"); // TODO: Convert to JSON parsing from new API
+            URL url = new URL("https://url.to/raw/file.txt"); // TODO: Convert to JSON parsing from new API
             Scanner s = new Scanner(url.openStream());
             s.useDelimiter(Pattern.compile("[\\r\\n;]+"));
             while (s.hasNext()) {
