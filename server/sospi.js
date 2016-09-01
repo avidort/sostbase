@@ -2,7 +2,7 @@ var http = require('http');
 var sqlite3 = require('sqlite3').verbose();
 
 var names;
-var interval = 1000;
+var interval = 10000;
 var port = 1386;
 
 if(!isNaN(process.argv[2])) interval = process.argv[2];
