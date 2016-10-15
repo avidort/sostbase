@@ -1,29 +1,39 @@
-var http = require('http');
-var sqlite3 = require('sqlite3').verbose();
+const express = require('express');
+const bodyParser = require('body-parser');
+const sqlite3 = require('sqlite3').verbose();
 
-var names;
-var interval = 10000;
-var port = 1386;
+const app = express();
 
-if(!isNaN(process.argv[2])) interval = process.argv[2];
-if(!isNaN(process.argv[3])) port = process.argv[3];
+const setup = {
+    appPort: 1386,
+    dbName: 'wildDbName.db',
+    accessKey: 'hardcodedKey'
+};
 
-function refresh() {
-	var db = new sqlite3.Database('musa.db');
-	db.all("SELECT `name` FROM `namedb`", function (err, rows) {
-		names = rows;
-		db.close();
-	});
-}
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
-var server = http.createServer(function (request, response) {
-	if(request.url.startsWith('/push')) {
-		// TODO: parse & handle push requests
-	}
-	else response.end(JSON.stringify(names));
+app.get('/', function(req, res) {
+    let db = new sqlite3.Database(setup.dbName);
+    db.all("SELECT * FROM `namedb`", function (err, rows) {
+        db.close();
+        res.send(JSON.stringify(rows));
+    });
 });
 
-server.listen(port, function() {
-	setInterval(refresh, interval);
-    console.log("SoS[T]API v1.0 started on port %s, interval %s", port, interval);
+app.post('/', function(req, res) {
+    if (req.body.key === setup.accessKey) {
+        if (req.body.data) {
+            let db = new sqlite3.Database(setup.dbName);
+            db.run(`INSERT INTO namedb (name) VALUES ('${req.body.data}')`);
+            db.close();
+            res.send(201);
+        }
+        else res.send(400);
+    }
+    else res.send(401);
+});
+
+var server = app.listen(setup.appPort, function() {
+  console.log("sospi v2 started on port %s", setup.appPort);
 });
