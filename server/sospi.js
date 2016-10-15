@@ -35,5 +35,5 @@ app.post('/', function(req, res) {
 });
 
 var server = app.listen(setup.appPort, function() {
-  console.log("sospi v2 started on port %s", setup.appPort);
+    console.log("sospi v2 started on port %s", setup.appPort);
 });
