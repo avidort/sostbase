@@ -20,8 +20,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     TextView curName;
