@@ -1,11 +1,21 @@
 package space.inj.sostogo;
 
-import android.os.StrictMode;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +24,16 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    List<String> names = new ArrayList<String>();
+    TextView curName;
+    List<String> names;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        preloadNames();
-        setRandomName();
+        curName = (TextView) findViewById(R.id.curName);
+        names = new ArrayList<String>();
+        new preloadNames().execute();
     }
 
     public void onScreenTap(View view) {
@@ -33,21 +41,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setRandomName() {
-        TextView t = (TextView) findViewById(R.id.curName);
-        t.setText(names.get(new Random().nextInt(names.size())));
+        if (names.size() > 0) curName.setText(names.get(new Random().nextInt(names.size())));
+        else curName.setText("N/A");
     }
 
-    public void preloadNames() {
-        try {
-            URL url = new URL("https://inj.space/cdn/musa.txt");
-            Scanner s = new Scanner(url.openStream());
-            s.useDelimiter(Pattern.compile("[\\r\\n;]+"));
-            while (s.hasNext()) {
-                String line = s.next();
-                if (line.length() > 0) names.add(line);
+    public class preloadNames extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ((ProgressBar)findViewById(R.id.progressBar)).setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            String urlAddress = "http://linkToApi.com";
+            URL url;
+            HttpURLConnection urlConnection;
+            BufferedReader reader;
+            String sosForecast;
+            try {
+                url = new URL(urlAddress);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+                reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                sosForecast = reader.readLine();
+                try {
+                    JSONArray jsonArray = new JSONArray(sosForecast);
+                    for(int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        names.add(jsonObject.getString("name"));
+                    }
+                } catch (JSONException e) {
+                    Log.e("MainActivity", "Error", e);
+                }
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            ((ProgressBar)findViewById(R.id.progressBar)).setVisibility(View.GONE);
+            setRandomName();
         }
     }
 }
