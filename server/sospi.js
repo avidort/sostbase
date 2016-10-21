@@ -7,13 +7,18 @@ const app = express();
 const setup = {
     appPort: 1386,
     dbName: 'wildDbName.db',
+	webClient: '../client-web/src',
     accessKey: 'hardcodedKey'
 };
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
-app.get('/', function(req, res) {
+if (setup.webClient) {
+	app.use(express.static(setup.webClient));
+}
+
+app.get('/api', function(req, res) {
     let db = new sqlite3.Database(setup.dbName);
     db.all("SELECT * FROM `namedb`", function (err, rows) {
         db.close();
@@ -21,7 +26,7 @@ app.get('/', function(req, res) {
     });
 });
 
-app.post('/', function(req, res) {
+app.post('/api', function(req, res) {
     if (req.body.key === setup.accessKey) {
         if (req.body.data) {
             let db = new sqlite3.Database(setup.dbName);
