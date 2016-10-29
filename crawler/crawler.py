@@ -17,7 +17,7 @@ def convert(srcfile, destdb):
         with open(srcfile) as f:
             for line in f:
                 print '>> Appending {0}'.format(line.rstrip())
-                c.execute('INSERT INTO namedb (name) VALUES (?)', (line,))
+                c.execute('INSERT INTO namedb (name) VALUES (?)', (line.rstrip(),))
         conn.commit()
         conn.close()
     except sqlite3.Error as e:
