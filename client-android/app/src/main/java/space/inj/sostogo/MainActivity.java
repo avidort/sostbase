@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     TextView curName;
     List<String> names;
     private String m_Text = "";
-    private String m_Pass = "";
     public String urlAddress = "http://linkToApi.com";
 
     @Override
@@ -62,17 +61,15 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("Add name...");
 
         final EditText inputET = new EditText(this);
-        final EditText keyET = new EditText(this);
         inputET.setInputType(InputType.TYPE_CLASS_TEXT);
-        keyET.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         builder.setView(inputET);
 
         builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                urlBuild.appendPath(urlAddress);
-                Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+                urlBuild.appendPath(urlAddress); // TODO: Add a url with a key
                 m_Text = inputET.getText().toString();
+                Toast.makeText(getApplicationContext(), "Added" + inputET, Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
