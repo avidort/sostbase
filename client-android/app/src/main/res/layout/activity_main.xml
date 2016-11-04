@@ -16,7 +16,7 @@
         android:id="@+id/curName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="top|center"
         android:textDirection="anyRtl"
         android:textSize="40sp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -27,11 +27,44 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/progressBar" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+
     <Button
         android:text="Add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="addName"/>
+        android:textColor="#FFFFFF"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:id="@+id/btnAdd"
+        android:onClick="addName" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/totalTV"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remainsTV"
+            android:layout_weight="1" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -28,27 +28,31 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    TextView curName;
+    TextView curName, totalTV, remainsTV;
     List<String> names;
     private String m_Text = "";
-    public String urlAddress = "http://linkToApi.com";
+    public String urlAddress = "http://sos.inj.space";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         curName = (TextView) findViewById(R.id.curName);
+        totalTV = (TextView) findViewById(R.id.totalTV);
+        remainsTV = (TextView) findViewById(R.id.remainsTV);
         names = new ArrayList<>();
         new preloadNames().execute();
     }
 
     public void onScreenTap(View view) {
+        if(names.size() > 0)
+            remainsTV.setText("Remaining names: " + names.size());
         setRandomName();
     }
 
     public void setRandomName() {
-        int random = new Random().nextInt((names.size()));
         if (names.size() > 0) {
+            int random = new Random().nextInt((names.size()));
             curName.setText(names.get(random));
             names.remove(random);
         }
@@ -127,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             ((ProgressBar) findViewById(R.id.progressBar)).setVisibility(View.GONE);
+            totalTV.setText("Total names: " + String.valueOf(names.size()));
             setRandomName();
         }
     }
