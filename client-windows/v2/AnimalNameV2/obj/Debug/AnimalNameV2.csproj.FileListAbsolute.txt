@@ -1,0 +1,9 @@
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\bin\Debug\AnimalNameV2.exe.config
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\bin\Debug\AnimalNameV2.exe
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\bin\Debug\AnimalNameV2.pdb
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\bin\Debug\MaterialSkin.dll
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\obj\Debug\AnimalNameV2.Form1.resources
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\obj\Debug\AnimalNameV2.Properties.Resources.resources
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\obj\Debug\AnimalNameV2.csproj.GenerateResource.Cache
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\obj\Debug\AnimalNameV2.exe
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalNameV2\AnimalNameV2\obj\Debug\AnimalNameV2.pdb
