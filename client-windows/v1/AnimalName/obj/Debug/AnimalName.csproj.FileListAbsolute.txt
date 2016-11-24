@@ -1,0 +1,8 @@
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\bin\Debug\AnimalName.exe.config
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\bin\Debug\AnimalName.exe
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\bin\Debug\AnimalName.pdb
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\obj\Debug\AnimalName.Form1.resources
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\obj\Debug\AnimalName.Properties.Resources.resources
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\obj\Debug\AnimalName.csproj.GenerateResource.Cache
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\obj\Debug\AnimalName.exe
+C:\Users\Amit\Desktop\עמית\פרוייקטים\C#\שטויות\AnimalName\AnimalName\obj\Debug\AnimalName.pdb
